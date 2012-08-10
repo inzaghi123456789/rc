@@ -1,0 +1,41 @@
+map <C-X>/ :s/^/\/\//<CR>
+"map <C-S><C-D> :colorscheme default<CR>:silent! tabnew <BAR> r! svn.sh diff <Bar> colordiff <Bar> sed 's/\[0\;0m/\[0\;0/g'<CR>:AnsiEsc<CR>ggdd
+"map <C-S><C-D> :runtime! synmenu.vim<CR>:silent! tabnew <BAR> 0r! svn.sh diff <BAR> diffstat -p0<CR>:silent! r! svn.sh diff<CR>:call SetSyn("diff")<CR>gg
+map <C-S><C-S> :call SvnGetDiff("")<CR>
+map <C-S><C-D> :call SvnGetDiff("src/application/cpt/d4app2")<CR>
+
+map <C-E><C-S> :ConqueTermSplit bashnh.sh<CR>
+map <C-E><C-V> :ConqueTermVSplit bashnh.sh<CR>
+map <C-E><C-T><C-B> :tabnew \| ConqueTerm bashnh.sh<CR>
+map <C-E><C-T><C-T> :tabnew \| ConqueTerm tmux<CR>
+" buffer movement
+map <A-1> 1gt
+map <A-2> 2gt
+map <A-3> 3gt
+map <A-4> 4gt
+map <A-5> 5gt
+map <A-6> 6gt
+map <A-7> 7gt
+map <A-8> 8gt
+map <A-9> 9gt
+
+set ic
+set autoindent
+set tabstop=2
+set shiftwidth=2
+set nowrap
+set number
+set incsearch
+set noswapfile
+colorscheme darkblue
+set guioptions-=T
+set wildmode=longest,list
+set wildmenu
+set history=1000
+set scrolloff=2
+set guifont=Bitstream\ Vera\ Sans\ Mono\ 8
+set switchbuf=useopen
+set guitablabel=%N\ %t
+
+let g:netrw_liststyle=3
+
