@@ -1,0 +1,53 @@
+# .bashrc
+
+echo "RC:: $0/${BASH_SOURCE}"
+#echo "bashrc"
+#echo "bashr DISPLAY: $DISPLAY"
+#echo "bashr XAUTH: $XAUTHORITY"
+
+set +o posix
+set +o histexpand
+
+# User specific aliases and functions
+HISTSIZE=10000
+HISTFILESIZE=10000
+HISTCONTROL=ignorespace:erasedups
+
+alias '..'='cd ..'
+alias 'cd..'='cd ..'
+alias dir_up2='cd ../..'
+alias dir_up3='cd ../../..'
+alias dir_up4='cd ../../../..'
+alias dir_up5='cd ../../../../..'
+alias ':'='less -iSRN'
+alias 'sd'='sudo'
+
+# dev
+alias svn_dstat='svn.sh diff | diffstat -l -p0'
+alias svn_diff='svn.sh diff | colordiff | less -iSR'
+alias svn_root='while true; do if [ "`pwd`" == "/" ]; then break; fi; if [ -z "`ls -a -1 | grep -i \.svn`" ]; then break; fi; cd ..; done'
+
+set -o vi
+
+# prefix variables
+PS_VI=0
+if [[ "$SHELLOPTS" == .*vi.* ]]; then PS_VI=1; fi
+PS_NICE="n`nice`"
+
+PS1_PREFIX="";
+if [ "$HISTFILE" == "/tmp/.antihist" ]; then PS1_PREFIX="$PS1_PREFIX""anti-hist:"; fi
+PS1_PREFIX="$PS1_PREFIX$PS_NICE:"
+if [ -n `set -o | grep -i \"vi\" | grep -i \"on\"` ]; then PS1_PREFIX="$PS1_PREFIX""vi"; fi
+if [ -n "$PS1_PREFIX" ]; then PS1_PREFIX="$PS1_PREFIX""$SHLVL"; fi
+if [ -n "$PS1_PREFIX" ]; then PS1_PREFIX="($PS1_PREFIX)"; fi
+
+PS1="$PS1_PREFIX"'[\u@\h \W]\$';
+export PS1
+PROMPT_COMMAND="date;$PROMPT_COMMAND"
+
+export PATH=$PATH:/sbin:~/local/bin
+export LESS="$LESS -iSRN"
+export EDITOR="vim -cstartinsert -S ~/.bashvim"
+export GREP_OPTIONS="--color=auto"
+
+#echo; fortune; echo;
